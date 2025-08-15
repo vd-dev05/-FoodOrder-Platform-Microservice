@@ -1,0 +1,90 @@
+# Tạo file .gitignore tối ưu cho dự án Food Order microservices
+
+gitignore_content = """
+# OS
+.DS_Store
+Thumbs.db
+
+# Node.js / Next.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnp
+.pnp.js
+.next/
+out/
+dist/
+build/
+.cache/
+coverage/
+
+# Flutter / Dart
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+build/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/ServiceDefinitions.json
+ios/Runner/GeneratedPluginRegistrant.*
+android/.gradle/
+android/app/build/
+
+# Go
+bin/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+env/
+*.env
+*.env.*
+*.local
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Docker
+docker-compose.override.yml
+.docker/
+*.pid
+
+# Kubernetes
+*.crt
+*.key
+*.pem
+secrets.yml
+
+# IDEs
+.vscode/
+.idea/
+*.iml
+
+# Misc
+tmp/
+temp/
+*.tmp
+*.swp
+*.swo
+
+# Ignore uploads (if needed)
+uploads/
+
+
