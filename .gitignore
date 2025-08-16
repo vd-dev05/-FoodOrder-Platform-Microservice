@@ -88,3 +88,5 @@ temp/
 uploads/
 
 
+# file run docker 
+run_project.md

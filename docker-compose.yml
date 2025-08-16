@@ -1,0 +1,105 @@
+
+services:
+  gateway:
+    build: ./gateway
+    env_file:
+      - ${ENV_FILE}
+    ports:
+      - "${GATEWAY_PORT}:8080"
+    depends_on:
+      - auth-service
+      - menu-service
+      - order-service
+    networks:
+      - foodnet
+
+  auth-service:
+    build: ./services/auth-service
+    env_file:
+      - ${ENV_FILE}
+    networks:
+      - foodnet
+
+  menu-service:
+    build: ./services/menu-service
+    env_file:
+      - ${ENV_FILE}
+    networks:
+      - foodnet
+
+  order-service:
+    build: ./services/order-service
+    env_file:
+      - ${ENV_FILE}
+    networks:
+      - foodnet
+
+  payment-service:
+    build: ./services/payment-service
+    env_file:
+      - ${ENV_FILE}
+    networks:
+      - foodnet
+
+  notification-service:
+    build: ./services/notification-service
+    env_file:
+      - ${ENV_FILE}
+    networks:
+      - foodnet
+
+  web-app:
+    build: ./web-app
+    env_file:
+      - ${ENV_FILE}
+    ports:
+      - "${WEB_PORT}:3000"
+    networks:
+      - foodnet
+
+  # mobile-app:
+  #   build: ./mobile-app
+  #   env_file:
+  #     - ${ENV_FILE}
+  #   networks:
+  #     - foodnet
+
+  postgres:
+    image: postgres:16
+    env_file:
+      - ${ENV_FILE}
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - foodnet
+
+  redis:
+    image: redis:7
+    env_file:
+      - ${ENV_FILE}
+    ports:
+      - "${REDIS_PORT}:6379"
+    networks:
+      - foodnet
+
+  minio:
+    image: minio/minio
+    command: server /data
+    env_file:
+      - ${ENV_FILE}
+    ports:
+      - "${MINIO_PORT}:9000"
+    volumes:
+      - minio_data:/data
+    networks:
+      - foodnet
+
+volumes:
+  postgres_data:
+  minio_data:
+
+networks:
+  foodnet:
+    driver: bridge
